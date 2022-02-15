@@ -2,21 +2,24 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
 const posts = require("./posts");
+const db = require("./models/db");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-posts(app);
+// posts(app);
 
 //db connection
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "123456",
-  database: "mvc_test",
-});
+// const db = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "123456",
+//   database: "mvc_test",
+// });
+
+posts(app, db);
 
 //create categories
 
@@ -83,3 +86,5 @@ app.listen(3001, () => {
 //     console.log("db connected");
 //   }
 // });
+
+module.exports = db;
